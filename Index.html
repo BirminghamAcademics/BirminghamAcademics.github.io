@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blob URL Generator</title>
+</head>
+<body>
+  <button id="generateClassroomUrl">Generate Classroom.it.com Blob URL</button>
+  <p id="classroomBlobUrl"></p>
+
+  <button id="generate1v1Url">Generate 1v1.lol Blob URL</button>
+  <p id="1v1BlobUrl"></p>
+
+  <script>
+    function generateBlobUrl(targetUrl, outputElementId) {
+      fetch(targetUrl)
+        .then(response => response.text())
+        .then(data => {
+          // Create a blob from the content
+          const blob = new Blob([data], { type: 'text/html' });
+          const blobUrl = URL.createObjectURL(blob);
+
+          // Display the blob URL
+          const urlElement = document.getElementById(outputElementId);
+          urlElement.textContent = blobUrl;
+
+          // Automatically revoke the URL after 2 hours
+          setTimeout(() => {
+            URL.revokeObjectURL(blobUrl);
+            urlElement.textContent = 'Blob URL has expired.';
+          }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
+        })
+        .catch(error => {
+          console.error('Error fetching the URL:', error);
+        });
+    }
+
+    document.getElementById('generateClassroomUrl').addEventListener('click', () => {
+      generateBlobUrl('https://classroom.it.com', 'classroomBlobUrl');
+    });
+
+    document.getElementById('generate1v1Url').addEventListener('click', () => {
+      generateBlobUrl('https://1v1.lol', '1v1BlobUrl');
+    });
+  </script>
+</body>
+</html>
