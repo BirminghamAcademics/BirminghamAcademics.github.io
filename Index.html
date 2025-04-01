@@ -1,74 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Campus</title>
-    <style>
-        body {
-            background-color: #1a1a2e;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .school-campus {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-        .school-resource {
-            background: #222;
-            border-radius: 15px;
-            padding: 10px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-        .school-resource:hover {
-            transform: scale(1.05);
-        }
-        .school-image {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .school-subject {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        a {
-            text-decoration: none;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blob URL and about:blank Example</title>
+  <style>
+    body {
+      background-color: #1a1a2e;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .school-campus {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .school-resource {
+      background: #222;
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .school-resource:hover {
+      transform: scale(1.05);
+    }
+    .school-image {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .school-subject {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to the School Campus</h1>
-    <button id="open-classroom">Open in Embedded URL</button>
-    <script type="text/javascript">
-        var url = "https://classroom.it.com"; // Directly setting the URL
-        var win;
-        document.querySelector('#open-classroom').onclick = function() {
-            if (win) {
-                win.focus();
-            } else {
-                win = window.open();
-                win.document.body.style.margin = '0';
-                win.document.body.style.height = '100%';
-                var iframe = win.document.createElement('iframe');
-                iframe.style.border = 'none';
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.style.margin = '0';
-                iframe.src = url; // Embedding classroom.it.com
-                win.document.body.appendChild(iframe); // Appending iframe
-            }
-        }
-    </script>
+  <h1>Blob URL and About:Blank Example</h1>
 
- 
+  <div id="sections" class="school-campus">
+    <div class="school-resource">
+      <h2 class="school-subject">Section 1</h2>
+      <button onclick="openBlob('https://classroom.it.com')">Open blob with classroom.it.com</button>
+      <button onclick="openAboutBlank('https://classroom.it.com')">Open about:blank with classroom.it.com</button>
     </div>
+    <div class="school-resource">
+      <h2 class="school-subject">Section 2</h2>
+      <button onclick="openBlob('https://1V1.lol')">Open blob with 1V1.lol</button>
+      <button onclick="openAboutBlank('https://1V1.lol')">Open about:blank with 1V1.lol</button>
+    </div>
+    <div class="school-resource">
+      <h2 class="school-subject">Section 3</h2>
+      <button onclick="openBlob('https://unblocked-games-onlines.github.io/')">Open blob with G̵̼̳͌͒͊̾̄̇ḁ̵̿m̷̮͚̟͍̹̬͎̜͎͆̌̒͆̋̄͝͝ͅẻ̴̥̰̞͚̅͛̄͗͐̉̉̅̂ş̸̛̱͍̻͈̳͎̋͂̽͘͝͝ͅ ̶̛͍͙̱͍͔̀̈́̊́̇̒̈́6̸̨̧͈̳̼̘̼̯̼̕6̷͈̻̝̼̐̓̈͑̑̐͝</button>
+      <button onclick="openAboutBlank('https://unblocked-games-onlines.github.io/')">Open about:blank with G̵̼̳͌͒͊̾̄̇ḁ̵̿m̷̮͚̟͍̹̬͎̜͎͆̌̒͆̋̄͝͝ͅẻ̴̥̰̞͚̅͛̄͗͐̉̉̅̂ş̸̛̱͍̻͈̳͎̋͂̽͘͝͝ͅ ̶̛͍͙̱͍͔̀̈́̊́̇̒̈́6̸̨̧͈̳̼̘̼̯̼̕6̷͈̻̝̼̐̓̈͑̑̐͝</button>
+    </div>
+    <div class="school-resource">
+      <h2 class="school-subject">Section 4</h2>
+      <button onclick="openBlob('https://techsite.com')">Open blob with techsite.com</button>
+      <button onclick="openAboutBlank('https://techsite.com')">Open about:blank with techsite.com</button>
+    </div>
+    <div class="school-resource">
+      <h2 class="school-subject">Section 5</h2>
+      <button onclick="openBlob('https://learninghub.com')">Open blob with learninghub.com</button>
+      <button onclick="openAboutBlank('https://learninghub.com')">Open about:blank with learninghub.com</button>
+    </div>
+  </div>
+
+  <script>
+    function openBlob(url) {
+      // Define the blob content with an iframe embedding the custom URL
+      const blobContent = `
+        <html>
+          <body>
+            <iframe 
+              src="${url}" 
+              style="width: 100%; height: 100%; border: none;"
+              title="Embedded Site">
+            </iframe>
+          </body>
+        </html>
+      `;
+
+      // Create the blob and blob URL
+      const blob = new Blob([blobContent], { type: "text/html" });
+      const blobUrl = URL.createObjectURL(blob);
+
+      // Open the blob URL in a new tab
+      window.open(blobUrl, '_blank');
+    }
+
+    function openAboutBlank(url) {
+      // Open about:blank and write the embedded content
+      const newWindow = window.open('about:blank', '_blank');
+      newWindow.document.write(`
+        <html>
+          <body>
+            <iframe 
+              src="${url}" 
+              style="width: 100%; height: 100%; border: none;"
+              title="Embedded Site">
+            </iframe>
+          </body>
+        </html>
+      `);
+      newWindow.document.close();
+    }
+  </script>
 </body>
 </html>
