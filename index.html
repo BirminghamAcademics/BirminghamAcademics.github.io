@@ -45,19 +45,38 @@
       "https://grrrgdijohfvkjhdvxkjbfxhbjcvxkj.bg.geek.nz/",
       "https://void.radio.am/",
       "https://skibidijoe.bg.geek.nz/",
-      "https://skibiditoiliet1123heyalpharizzersnotsigma.lightspeedsystems.help/"
+      "https://skibiditoiliet1123heyalpharizzersnotsigma.lightspeedsystems.help/",
+      "https://ixlmath.crabdance.com/",
+      "https://watermelon.bg.geek.nz/",
+      "https://lime.bg.geek.nz/",
+      "https://si.edu.bg.geek.nz/",
+      "https://16ohncrossroad.bg.geek.nz/",
+      "https://xn--6qq051aaaaa614fendf66ababbb3110ecaccc.jodymaroni.com/",
+      "https://vv.lightspeedsystems.help/",
+      "https://www.artclass.artclass.networkindia.com/",
+      "https://hivoid.urmanet.ch/",
+      "https://si.edu.bg.geek.nz/",
+      "https://alec.bg.geek.nz/",
+      "https://2fdrgdrf8yhjut4wes8d7yunggyuh.bg.geek.nz/",
+      "https://voidonto.lightspeedsystems.help/",
+      "https://mail.google.com.flage.site.bg.geek.nz/",
+      "https://express.adobe.com.bg.geek.nz/",
+      "https://apple.com.lxmicro.net/",
+      "https://asjdaksjdhaskjdhaskjdhsakjdhsakjd.bg.geek.nz/",
+      "https://imightseervejjchfjdj.swanndvr.net/",
+      "https://goole.com.bg.geek.nz/",
+      "https://e.lightspeedsystems.help/",
+      "https://sigmaseige.bg.geek.nz/",
+      "https://www.magyar.bg.geek.nz/",
+      "https://hawktu.bg.geek.nz/"
     ];
 
     function openAboutBlank(index) {
-      if (index < 1 || index > links.length) return alert("Invalid link index!");
-
       const newWindow = window.open("about:blank", "_blank");
       if (newWindow) {
         newWindow.document.write(`
           <html>
-          <head>
-            <title>About:Blank - ${index}</title>
-          </head>
+          <head><title>About:Blank - ${index}</title></head>
           <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black;">
             <iframe src="${links[index - 1]}" style="width: 90vw; height: 90vh; border: none;"></iframe>
           </body>
@@ -70,13 +89,9 @@
     }
 
     function openBlob(index) {
-      if (index < 1 || index > links.length) return alert("Invalid link index!");
-
       const blobContent = `
         <html>
-        <head>
-          <title>Blob: - ${index}</title>
-        </head>
+        <head><title>Blob: - ${index}</title></head>
         <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black;">
           <iframe src="${links[index - 1]}" style="width: 90vw; height: 90vh; border: none;"></iframe>
         </body>
@@ -84,16 +99,9 @@
       `;
       const blob = new Blob([blobContent], { type: "text/html" });
       const blobUrl = URL.createObjectURL(blob);
-      const newWindow = window.open(blobUrl, "_blank");
-
-      if (!newWindow) {
-        alert("Popup blocked! Please allow popups for this site.");
-      }
-
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 5000); // Cleanup Blob URL
+      window.open(blobUrl, "_blank");
     }
 
-    // Generate buttons dynamically
     const container = document.getElementById("buttonsContainer");
     for (let i = 1; i <= links.length; i++) {
       const aboutBtn = document.createElement("button");
