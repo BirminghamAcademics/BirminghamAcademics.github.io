@@ -28,35 +28,7 @@
 </head>
 <body>
   <h1>Link Navigator</h1>
-  
-  <button onclick="openAboutBlank(1)">About:Blank - 1</button>
-  <button onclick="openBlob(1)">Blob: - 1</button>
-  <button onclick="openAboutBlank(2)">About:Blank - 2</button>
-  <button onclick="openBlob(2)">Blob: - 2</button>
-  <button onclick="openAboutBlank(3)">About:Blank - 3</button>
-  <button onclick="openBlob(3)">Blob: - 3</button>
-  <button onclick="openAboutBlank(4)">About:Blank - 4</button>
-  <button onclick="openBlob(4)">Blob: - 4</button>
-  <button onclick="openAboutBlank(5)">About:Blank - 5</button>
-  <button onclick="openBlob(5)">Blob: - 5</button>
-  <button onclick="openAboutBlank(6)">About:Blank - 6</button>
-  <button onclick="openBlob(6)">Blob: - 6</button>
-  <button onclick="openAboutBlank(7)">About:Blank - 7</button>
-  <button onclick="openBlob(7)">Blob: - 7</button>
-  <button onclick="openAboutBlank(8)">About:Blank - 8</button>
-  <button onclick="openBlob(8)">Blob: - 8</button>
-  <button onclick="openAboutBlank(9)">About:Blank - 9</button>
-  <button onclick="openBlob(9)">Blob: - 9</button>
-  <button onclick="openAboutBlank(10)">About:Blank - 10</button>
-  <button onclick="openBlob(10)">Blob: - 10</button>
-  <button onclick="openAboutBlank(11)">About:Blank - 11</button>
-  <button onclick="openBlob(11)">Blob: - 11</button>
-  <button onclick="openAboutBlank(12)">About:Blank - 12</button>
-  <button onclick="openBlob(12)">Blob: - 12</button>
-  <button onclick="openAboutBlank(13)">About:Blank - 13</button>
-  <button onclick="openBlob(13)">Blob: - 13</button>
-  <button onclick="openAboutBlank(14)">About:Blank - 14</button>
-  <button onclick="openBlob(14)">Blob: - 14</button>
+  <div id="buttonsContainer"></div>
 
   <script>
     const links = [
@@ -77,30 +49,63 @@
     ];
 
     function openAboutBlank(index) {
+      if (index < 1 || index > links.length) return alert("Invalid link index!");
+
       const newWindow = window.open("about:blank", "_blank");
       if (newWindow) {
-        newWindow.location.href = links[index - 1];
+        newWindow.document.write(`
+          <html>
+          <head>
+            <title>About:Blank - ${index}</title>
+          </head>
+          <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black;">
+            <iframe src="${links[index - 1]}" style="width: 90vw; height: 90vh; border: none;"></iframe>
+          </body>
+          </html>
+        `);
+        newWindow.document.close();
       } else {
         alert("Popup blocked! Please allow popups for this site.");
       }
     }
 
     function openBlob(index) {
+      if (index < 1 || index > links.length) return alert("Invalid link index!");
+
       const blobContent = `
         <html>
-          <body>
-            <h1>Blob URL for Link ${index}</h1>
-            <p>Redirecting to: ${links[index - 1]}</p>
-            <script>
-              window.location.href = "${links[index - 1]}";
-            </script>
-          </body>
+        <head>
+          <title>Blob: - ${index}</title>
+        </head>
+        <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black;">
+          <iframe src="${links[index - 1]}" style="width: 90vw; height: 90vh; border: none;"></iframe>
+        </body>
         </html>
-<script>    
-`;
+      `;
       const blob = new Blob([blobContent], { type: "text/html" });
       const blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, "_blank");
+      const newWindow = window.open(blobUrl, "_blank");
+
+      if (!newWindow) {
+        alert("Popup blocked! Please allow popups for this site.");
+      }
+
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 5000); // Cleanup Blob URL
+    }
+
+    // Generate buttons dynamically
+    const container = document.getElementById("buttonsContainer");
+    for (let i = 1; i <= links.length; i++) {
+      const aboutBtn = document.createElement("button");
+      aboutBtn.textContent = `About:Blank - ${i}`;
+      aboutBtn.onclick = () => openAboutBlank(i);
+      
+      const blobBtn = document.createElement("button");
+      blobBtn.textContent = `Blob: - ${i}`;
+      blobBtn.onclick = () => openBlob(i);
+
+      container.appendChild(aboutBtn);
+      container.appendChild(blobBtn);
     }
   </script>
 </body>
