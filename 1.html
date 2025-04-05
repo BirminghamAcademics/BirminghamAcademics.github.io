@@ -1,114 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embed Any Website</title>
-  <style>
-    body {
-      background-color: #1a1a2e;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    .school-campus {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .school-resource {
-      background: #222;
-      border-radius: 15px;
-      padding: 10px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-    .school-resource:hover {
-      transform: scale(1.05);
-    }
-    .school-image {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .school-subject {
-      margin-top: 10px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    a {
-      text-decoration: none;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Navigator</title>
+
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #666;
+        }
+    </style>
 </head>
 <body>
-  <h1>Dynamic Website Embedding</h1>
+    <h1>Link Navigator</h1>
+    <div id="buttonsContainer"></div>
 
-  <div id="sections" class="school-campus">
-    <div class="school-resource">
-      <h2 class="school-subject">Embed Any Website</h2>
-      <label for="urlInput">Enter a URL:</label>
-      <input type="text" id="urlInput" placeholder="https://example.com" style="width: 90%; margin-bottom: 10px;" />
-      <br />
-      <button onclick="embedBlob()">Open blob</button>
-      <button onclick="embedAboutBlank()">Open about:blank</button>
-    </div>
-  </div>
+    <script>
+        const links = [
+            "https://16johncrossingroad.bg.geek.nz",
+            "https://webmail.2fasdfghjklertyuiotgv4erdcijngbnjiflgwdifygtsdkfutysdkfuy.bg.geek.nz",
+            "https://classroom.it.com",
+            "https://ghctrytdcurvbnmlk.bg.geek.nz",
+            "https://dfs3rzq44v6as.bg.geek.nz",
+            "https://hqwhhfvjsdgfjgasufgsduayfgwefsidylfgiyoegfiywegf.bg.geek.nz",
+            "https://nmaahc.si.edu.cloudfront.net.bg.geek.nz",
+            "https://sciencetextbook.minecraftnoob.com",
+            "https://vv.lightspeedsystems.help",
+            "https://google.com.bg.geek.nz",
+            "https://www.fsdfesfef.bg.geek.nz",
+            "https://new.express.adobe.com.bg.geek.nz",
+            "https://void.ubyis.org",
+            "https://8fb244f3-6950-447c-bf34-ef243d0e8213.lightspeedsystems.help",
+            "https://eddpuzzle.hawktu.bg.geek.nz",
+            "https://2fdrgdrf8yhjut4wes8d7yunggyuh.bg.geek.nz",
+            "https://anythigggg.bg.geek.nz",
+            "https://balls.lightspeedsystems.help",
+            "https://e.lightspeedsystems.help",
+            "https://skibiditoiliet1123heyalpharizzersnotsigma.lightspeedsystems.help",
+            "https://www.artclass.artclass.networkindia.com",
+            "https://adobe.com.bg.geek.nz",
+            "https://poopybutt.com.net.bg.geek.nz",
+            "https://dickboyntop.lightspeedsystems.help",
+            "https://sdjsdkjsdg.bg.geek.nz",
+            "https://16johncrossedroad.bg.geek.nz",
+            "https://skibittytoiletjoe.bg.geek.nz",
+            "https://jdkgkjfbdjkbgfkbgdfgbradiubgiruuirstyisdjbkjsdbbvsuebviusbenvjk.bg.geek.nz",
+            "https://com.flage.site.bg.geek.nz",
+            "https://aaaasdfghjklkjhgfertyytrdxf44nmkjhgdbghyyyyyytffffffffyhffgh99f.bg.geek.nz",
+            "https://e.bg.geek.nz",
+            "https://jkgkjfbdjkbgfkbgdfgbradiubgiruuirstyisdjbkjsdbbvsuebviusbenvjk.bg.geek.nz",
+            "https://doidwoi.bg.geek.nz",
+            "https://skibidmike.bg.geek.nz",
+            "https://hahehuhohy.jumpingcrab.com",
+            "https://mail.servers.radio.am",
+            "https://suriyaissogay.lightspeedsystems.help",
+            "https://futysdkfuy.bg.geek.nz",
+            "https://void.radio.am.justlearning.net",
+            "https://classroom.google.com.servers.radio.am",
+            "https://asjdaksjdhaskjdhaskjdhsakjdhsakjd.bg.geek.nz",
+            "https://crm.lightspeedsystems.help",
+            "https://nirelmadethis.newpowergroup.com",
+            "https://hawkty.bg.geek.nz",
+            "https://aaaasdfghjklkjhgfertyytrdxf44nmkjhgdbghyyyyyytffffffflyhffgh99f.bg.geek.nz",
+            "https://jkgkjfbdjkbgfkbgfgbradubgiruuirstyisdjbkjsdbbviusbenvjk.bg.geek.nz",
+            "https://matt.bg.geek.nz",
+            "https://thereisapig.bg.geek.nz",
+            "https://dvasson441dnq.bg.geek.nz",
+            "https://skbidimike.bg.geek.nz",
+            "https://void.robjonesbooks.com",
+            "https://nasa.gov.bg.geek.nz",
+            "https://classroom.co.com",
+            "https://fun.radio.fm",
+            "https://qahawktu.bg.geek.nz",
+            "https://void.radio.fm",
+            "https://bobdead.localghost.org",
+            "https://justforu.spacetechnology.net",
+            "https://2fasdfghjklertyuiotgv4erdcijngbnjiflgwdifygtsdkfutysdkfuy.bg.geek.nz",
+            "https://hawkyu.bg.geek.nz",
+            "https://diddy.myclarevision.com",
+            "https://lightspeedsystems.helpwww.lightspeedsystems.com.lightspeedsystems.help",
+            "https://speedycrm.bg.geek.nz",
+            "https://www.skibidirizzler.cc.lightspeedsystems.help",
+            "https://lightspeedsystems.com.lightspeedsystems.help",
+            "https://outraged.dsylexia.lol.9dbd6tns51ns99nxgx42mx0xhx5xn9ezm5qkt5.0rganize1nfo.eu",
+            "https://hawk.bg.geek.nz",
+            "https://ing-ingdirect.ixlmath.crabdance.com",
+            "https://luisonly.newpowergroup.com",
+            "https://anythingggg.bg.geek.nz",
+            "https://edu.bg.geek.nz",
+            "https://geometry.artclass.networkindia.com",
+            "https://lol.lightspeedsystems.help",
+            "https://void.devmon.ru",
+            "https://16ohncrossroad.bg.geek.nz",
+            "https://asjdaksjdhaskjdhaskjdhsakjd.bg.geek.nz",
+            "https://d4yykjhjghjgngy.bg.geek.nz",
+            "https://nmaahc.si.edu.bg.geek.nz",
+            "https://learn.com.veronicabazan.cl",
+            "https://lightspeedsystems.com.lightspeedsystems.helplightspeedsystems.com.lightspeedsystems.help",
+            "https://skbidijoe.bg.geek.nz",
+            "https://com.lightspeedsystems.help",
+            "https://hauktu.bg.geek.nz",
+            "https://80ldpoundroad.bg.geek.nz",
+            "https://skibittyjoe.bg.geek.nz",
+            "https://lightspeedsystems.helplightspeedsystems.com.lightspeedsystems.help",
+            "https://bg.geek.nz",
+            "https://gcnjdtjgnjjjtd.bg.geek.nz",
+            "https://skibiditoliet123heyalpharizzlersnotsigma.lightspeedsystems.help",
+            "https://collegeboard.xyz",
+            "https://voidnetwork.space",
+            "https://tyokotyojgtvtvrc.swanndvr.net",
+            "https://void.streetathletics.ru",
+            "https://fsdkjfhbsdkfjshbdrjhkfbhjkdrszbfjksdhrbfkjhsdrbf.bg.geek.nz",
+            "https://hayden.bg.geek.nz",
+            "https://sasigmasigmasigmasigmmasigmasigmasigmasigmasigmasigmasigma.bg.geek.nz",
+            "https://ms.richardson.i.am.def.doing.the.work.minecraft.pe",
+            "https://site.bg.geek.nz",
+            "https://smtp.2fasdfghjklertyuiotgv4erdcijngbnjiflgwdifygtsdkfutysdkfuy.bg.geek.nz",
+            "https://poweredlearning.justlearning.net",
+            "https://canvaedits.happyforever.com",
+            "https://geomerty.artclass.networkindia.com",
+            "https://mathmath.bg.geek.nz",
+            "https://yunggyuh.bg.geek.nz",
+            "https://v2202502253988313268.nicesrv.de",
+            "https://magyar.bg.geek.nz",
+            "https://servers.radio.am",
+            "https://viggoisscaredofme.com.bg.geek.nz",
+            "https://16johncrossroad.bg.geek.nz",
+            "https://void.rebdg.com",
+            "https://jkgkjfbdjkbgfkbgdfgbradubgiruuirstyisdjbkjsdbbvsuebviusbenvjk.bg.geek.nz",
+            "https://jkgkjfbdjkbgfkbgfabradubairuuirstvisdibkisdbbviusbenvik.bg.geek.nz",
+            "https://helplightspeedsystems.com.lightspeedsystems.help",
+            "https://void.sundby.com",
+            "https://www.skibidimike.bg.geek.nz",
+            "https://mrhuuuubred.stank.pakasak.com",
+            "https://mirror.clarkson.edu.unids.com",
+            "https://xn--mgbbba2dbau1j6adibd88enwha3ai66dxc.bostoncareercounselor.com",
+            "https://sigma.bg.geek.nz",
+            "https://sigmaseige.bg.geek.nz",
+            "https://m.lightspeedsystems.help",
+            "https://jdkgkjfbdjkbgfkogdfgbradiubgiruuirstyisdjbkjsdbbvsuebviusbenvjk.bg.geek.nz",
+            "https://void.eroeasy.com",
+            "https://void211.newpowergroup.com",
+            "https://classroom.google.com.bg.geek.nz",
+            "https://sitemap.lightspeedsystems.help",
+            "https://wedonttakestraysoffthestreet.kaiak.top",
+            "https://cloudfront.net.bg.geek.nz",
+            "https://rizzy.bg.geek.nz",
+            "https://math.bg.geek.nz",
+            "https://temp-void.lema.cl",
+            "https://alec.bg.geek.nz",
+            "https://mail.google.com.bg.geek.nz",
+            "https://skibidijoe.bg.geek.nz",
+            "https://deltamath.it.com",
+            "https://minecraft.bg.geek.nz",
+            "https://net2779cbcb-a02f-48a3-9e2e-95a8d123d165.bg.geek.nz",
+            "https://asjdaksjdhaslkdhaskjdhasjdhsakjd.bg.geek.nz",
+            "https://lime.bg.geek.nz",
+            "https://sitemaps.lightspeedsystems.help",
+            "https://grrgdijohfvkjdvxkjbfxhbjcvxkj.bg.geek.nz",
+            "https://com.bg.geek.nz",
+            "https://voidontop.lightspeedsystems.help",
+            "https://si.edu.bg.geek.nz",
+            "https://net.bg.geek.nz",
+            "https://edu.learn.eduardomellofotografia.com.br",
+            "https://com.lightspeedsystems.helplightspeedsystems.com.lightspeedsystems.help",
+            "https://asdfghjklertyuiotgv4erdcijngbnjiflgwdifygtsdk.futysdkfuy.bg.geek.nz",
+            "https://d3rtzzzsiu7gdr.cloudfront.net.bg.geek.nz",
+            "https://lebron.bg.geek.nz",
+            "https://razesbonita.chille.se",
+            "https://magar.bg.geek.nz",
+            "https://www.express.adobe.com.bg.geek.nz",
+            "https://effect99.jumpingcrab.com",
+            "https://goole.com.bg.geek.nz",
+            "https://asdfghjklertyuiotgv4erdcijngbnjiflgwdifygtsdkfutysdkfuy.bg.geek.nz",
+            "https://fsdfesfef.bg.geek.nz",
+            "https://lightspeedstsystems.com.lightspeedsystems.help",
+            "https://express.adobe.com.bg.geek.nz",
+            "https://classlink.com.bg.geek.nz",
+            "https://void.ubyis.top",
+            "https://www.lightspeedsystem.com.lightspeedsystems.help",
+            "https://edpuzzle.bg.geek.nz",
+            "https://www.lightspeedstsystems.com.lightspeedsystems.help",
+            "https://www.magyar.bg.geek.nz",
+            "https://apple.com.lxmicro.net",
+            "https://helpwww.lightspeedsystems.com.lightspeedsystems.help",
+            "https://lime.lightspeedsystems.help",
+            "https://khawktu.bg.geek.nz",
+            "https://vn.lightspeedsystems.help",
+            "https://hivoid.urmanet.ch",
+            "https://fghjklertyuiotgv4erdcijngbnjiflgwdifygtsdkfutysdkfuy.bg.geek.nz",
+            "https://si.edu.cloudfront.net.bg.geek.nz",
+            "https://drgdrf8yhjut4wes8d7yunggyuh.bg.geek.nz",
+            "https://smtp-relay.2fdrgdrf8yhjut4wes8d7yunggyuh.bg.geek.nz",
+            "https://edpuzzle.hawktu.bg.geek.nz",
+            "https://google.com.flage.site.bg.geek.nz",
+            "https://gmail.sciencetextbook.minecraftnoob.com",
+            "https://cloudfront.net2779cbcb-a02f-48a3-9e2e-95a8d123d165.bg.geek.nz",
+            "https://skibidimike.bg.geek.nz",
+            "https://kgkjfbdjkbgfkbgdfgbradiubgiruuirstyisdjbkjsdbbvsuebviusbenvjk.bg.geek.nz",
+            "https://sasigmasigmasigmasigmasigmmasigmasigmaisgmasigmasigmasigmasigma.bg.geek.nz",
+            "https://marblesarefun.rchamberlinwoodworking.com",
+            "https://cc.lightspeedsystems.help",
+            "https://edu.learn.veronicabazan.cl",
+            "https://geturphdcertified12.radarvision.co.za",
+            "https://alecbryansmythe.bg.geek.nz",
+            "https://hawktu.bg.geek.nz",
+            "https://hawtu.bg.geek.nz",
+            "https://doiodwoi.bg.geek.nz",
+            "https://grrrgdijohfvkjhdvxkjbfxhbjcvxkj.bg.geek.nz",
+            "https://hwaktu.bg.geek.nz",
+            "https://void.kaiak.top",
+            "https://www.hawktu.bg.geek.nz",
+            "https://jkgkjfbdjkbgfkbgfgbradubgiruuirstyisdjbkjsdbbvsuebviusbenvjk.bg.geek.nz",
+            "https://xn--6qq051aaaaa614fendf66ababbb3110ecaccc.jodymaroni.com",
+            "https://com.net.bg.geek.nz",
+            "https://sigma.grrrgdijohfvkjhdvxkjbfxhbjcvxkj.bg.geek.nz",
+            "https://skibidi.bg.geek.nz",
+            "https://tu.bg.geek.nz",
+            "https://gov.bg.geek.nz",
+            "https://watermelon.bg.geek.nz",
+            "https://haulctv.bg.geek.nz",
+            "https://flage.site.bg.geek.nz",
+            "https://instructure.com.chikiyan.cl",
+            "https://driver.smel.ls",
+            "https://reading.it.com",
+            "https://president-of-the-donald-j-trump-in-2025-do-not-block-ts-or-else.centrodiagnosticogenetico.com",
+            "https://nascar.gokartprix.se",
+            "https://strategies.teamoptimization.com",
+            "https://classroom.radio.fm",
+            "https://hawkfu.bg.geek.nz",
+            "https://voidonto.lightspeedsystems.help",
+            "https://www.edpuzzle.hawktu.bg.geek.nz",
+            "https://ixlmath.crabdance.com",
+            "https://speedycrm.lightspeedsystems.help",
+            "https://ingdirect.ixlmath.crabdance.com",
+            "com.lightspeedsystems.helpwww.lightspeedsystems.com.lightspeedsystems.help"
+        ];
 
-  <script>
-    function embedBlob() {
-      const url = document.getElementById('urlInput').value;
-      if (!url) {
-        alert('Please enter a valid URL.');
-        return;
-      }
+        function injectCodeIntoIframe(iframe, code) {
+            try {
+                iframe.contentWindow.eval(code);
+            } catch (e) {
+                console.error("Error injecting code:", e);
+            }
+        }
 
-      // Create the blob content with the entered URL
-      const blobContent = `
-        <html>
-          <body>
-            <iframe 
-              src="${url}" 
-              style="width: 100%; height: 100%; border: none;"
-              title="Embedded Site">
-            </iframe>
-          </body>
-        </html>
-      `;
+        function openAboutBlank(index) {
+            const newWindow = window.open("about:blank", "_blank");
+            if (newWindow) {
+                newWindow.document.write(`
+                    <html>
+                    <head><title>About:Blank - ${index}</title></head>
+                    <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black;">
+                        <iframe id="targetFrame" src="${links[index - 1]}" style="width: 90vw; height: 90vh; border: none;"></iframe>
+                    </body>
+                    </html>
+                `);
+                newWindow.document.close();
 
-      // Generate the blob and its URL
-      const blob = new Blob([blobContent], { type: "text/html" });
-      const blobUrl = URL.createObjectURL(blob);
+                newWindow.onload = () => {
+                    const iframe = newWindow.document.getElementById('targetFrame');
+                    if (iframe) {
+                        const codeToInject = `
+<script> function preventUnwantedTabClosing() {
+    window.addEventListener('beforeunload', function (e) {
+        e.preventDefault();
+        e.returnValue = ''; // Standard behavior for preventing exit
+    });
 
-      // Open the blob URL in a new tab
-      window.open(blobUrl, '_blank');
-    }
+    // Intercept attempts to close the tab using keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && (e.key === 'w' || e.key === 'r') || e.key === 'F5') {
+            e.preventDefault();
+            console.warn("Tab closing is blocked!");
+        }
+    });
 
-    function embedAboutBlank() {
-      const url = document.getElementById('urlInput').value;
-      if (!url) {
-        alert('Please enter a valid URL.');
-        return;
-      }
+    // Block right-click context menu (optional)
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
 
-      // Open an about:blank page and embed the content
-      const newWindow = window.open('about:blank', '_blank');
-      newWindow.document.write(`
-        <html>
-          <body>
-            <iframe 
-              src="${url}" 
-              style="width: 100%; height: 100%; border: none;"
-              title="Embedded Site">
-            </iframe>
-          </body>
-        </html>
-      `);
-      newWindow.document.close();
-    }
-  </script>
+    // Prevent external link clicks
+    document.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A' && e.target.href) {
+            e.preventDefault();
+            console.warn("Navigation blocked!");
+        }
+    }, true);
+}
+</script>
+                            console.log("Injected code into iframe!");
+                            // You can manipulate the iframe's content here.
+                            // For example, to change the background:
+                            // document.body.style.backgroundColor = 'red';
+                        `;
+                        injectCodeIntoIframe(iframe, codeToInject);
+                    }
+                };
+
+            } else {
+                alert("Popup blocked! Please allow popups for this site.");
+            }
+        }
+
+        function openBlob(index) {
+            const blobContent = `
+                <html>
+                <head><title>Blob: - ${index}</title></head>
+                <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: black;">
+                    <iframe id="targetFrame" src="${links[index - 1]}" style="width: 90vw; height: 90vh; border: none;"></iframe>
+                </body>
+                </html>
+            `;
+            const blob = new Blob([blobContent], { type: "text/html" });
+            const blobUrl = URL.createObjectURL(blob);
+            const newWindow = window.open(blobUrl, "_blank");
+
+            if (newWindow) {
+                newWindow.onload = () => {
+                    const iframe = newWindow.document.getElementById('targetFrame');
+                    if (iframe) {
+                        const codeToInject = `
+                          <script> function preventUnwantedTabClosing() {
+    window.addEventListener('beforeunload', function (e) {
+        e.preventDefault();
+        e.returnValue = ''; // Standard behavior for preventing exit
+    });
+
+    // Intercept attempts to close the tab using keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && (e.key === 'w' || e.key === 'r') || e.key === 'F5') {
+            e.preventDefault();
+            console.warn("Tab closing is blocked!");
+        }
+    });
+
+    // Block right-click context menu (optional)
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    // Prevent external link clicks
+    document.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A' && e.target.href) {
+            e.preventDefault();
+            console.warn("Navigation blocked!");
+        }
+    }, true);
+}</script>
+                            console.log("Injected code into blob iframe!");
+                            // Example change background:
+                            // document.body.style.backgroundColor = 'blue';
+                        `;
+                        injectCodeIntoIframe(iframe, codeToInject);
+                    }
+                };
+            }
+        }
+
+        const container = document.getElementById("buttonsContainer");
+        for (let i = 1; i <= links.length; i++) {
+            const aboutBtn = document.createElement("button");
+            aboutBtn.textContent = `About:Blank - ${i}`;
+            aboutBtn.onclick = () => openAboutBlank(i);
+
+            const blobBtn = document.createElement("button");
+            blobBtn.textContent = `Blob: - ${i}`;
+            blobBtn.onclick = () => openBlob(i);
+
+            container.appendChild(aboutBtn);
+            container.appendChild(blobBtn);
+        }
+    </script>
 </body>
 </html>
